@@ -13,10 +13,9 @@ interface Props {
 
 export function KanbanColumn({ column }: Props) {
   const [confirmDelete, setConfirmDelete] = useState(false)
-  const { cards, deleteColumn } = useKanbanStore((s) => ({
-    cards: s.cards.filter((c) => c.columnId === column.id),
-    deleteColumn: s.deleteColumn,
-  }))
+  const allCards = useKanbanStore((s) => s.cards)
+  const deleteColumn = useKanbanStore((s) => s.deleteColumn)
+  const cards = allCards.filter((c) => c.columnId === column.id)
 
   const { setNodeRef, isOver } = useDroppable({
     id: column.id,

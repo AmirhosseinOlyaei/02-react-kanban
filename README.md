@@ -3,6 +3,7 @@
 **Feature:** Full drag-and-drop Kanban board with multi-column DnD, WIP limits, card creation, and localStorage persistence.
 
 ## Stack
+
 - React 19 + TypeScript strict mode
 - Vite 6 + Tailwind CSS v4 (`@tailwindcss/vite`)
 - `@dnd-kit/core` + `@dnd-kit/sortable` — pointer & keyboard accessible DnD
@@ -11,6 +12,7 @@
 - `lucide-react` icons
 
 ## Architecture
+
 ```
 src/
   types/index.ts          ← Card, Column, KanbanState, PRIORITY_CONFIG
@@ -24,6 +26,7 @@ src/
 ```
 
 ## Key DnD patterns
+
 - **Drag handle** — grip icon only; card body remains clickable
 - **Cross-column moves** — handled in `onDragOver` via `moveCard` (immediate feedback)
 - **Same-column reorder** — handled in `onDragEnd` via `reorderCard`
@@ -31,6 +34,7 @@ src/
 - **WIP limit** — amber badge at limit, rose badge + warning icon when exceeded
 
 ## Setup
+
 ```bash
 npm install
 npm run dev      # http://localhost:5173

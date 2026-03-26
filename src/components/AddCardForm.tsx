@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { Plus, X } from 'lucide-react'
-import { useKanbanStore } from '../store/kanbanStore'
-import { type CardPriority, PRIORITY_CONFIG } from '../types'
+import { useState } from "react"
+import { Plus, X } from "lucide-react"
+import { useKanbanStore } from "../store/kanbanStore"
+import { type CardPriority, PRIORITY_CONFIG } from "../types"
 
 interface Props {
   columnId: string
@@ -9,11 +9,11 @@ interface Props {
 
 export function AddCardForm({ columnId }: Props) {
   const [open, setOpen] = useState(false)
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [priority, setPriority] = useState<CardPriority>('medium')
-  const [assignee, setAssignee] = useState('')
-  const [labelsInput, setLabelsInput] = useState('')
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [priority, setPriority] = useState<CardPriority>("medium")
+  const [assignee, setAssignee] = useState("")
+  const [labelsInput, setLabelsInput] = useState("")
   const addCard = useKanbanStore((s) => s.addCard)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,16 +21,22 @@ export function AddCardForm({ columnId }: Props) {
     if (!title.trim()) return
 
     const labels = labelsInput
-      .split(',')
+      .split(",")
       .map((l) => l.trim())
       .filter(Boolean)
 
-    addCard(columnId, { title: title.trim(), description, priority, assignee, labels })
-    setTitle('')
-    setDescription('')
-    setPriority('medium')
-    setAssignee('')
-    setLabelsInput('')
+    addCard(columnId, {
+      title: title.trim(),
+      description,
+      priority,
+      assignee,
+      labels,
+    })
+    setTitle("")
+    setDescription("")
+    setPriority("medium")
+    setAssignee("")
+    setLabelsInput("")
     setOpen(false)
   }
 
@@ -47,7 +53,10 @@ export function AddCardForm({ columnId }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-gray-800 border border-gray-600 rounded-lg p-3 space-y-2.5">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-gray-800 border border-gray-600 rounded-lg p-3 space-y-2.5"
+    >
       <input
         autoFocus
         value={title}
@@ -71,7 +80,9 @@ export function AddCardForm({ columnId }: Props) {
           className="bg-gray-900 border border-gray-700 rounded-md px-2 py-1.5 text-sm text-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500"
         >
           {(Object.keys(PRIORITY_CONFIG) as CardPriority[]).map((p) => (
-            <option key={p} value={p}>{PRIORITY_CONFIG[p].label}</option>
+            <option key={p} value={p}>
+              {PRIORITY_CONFIG[p].label}
+            </option>
           ))}
         </select>
 

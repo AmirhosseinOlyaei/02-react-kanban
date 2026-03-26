@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { GripVertical, Trash2, User, Tag } from 'lucide-react'
-import { useKanbanStore } from '../store/kanbanStore'
-import { PRIORITY_CONFIG, type Card } from '../types'
+import { useState } from "react"
+import { useSortable } from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
+import { GripVertical, Trash2, User, Tag } from "lucide-react"
+import { useKanbanStore } from "../store/kanbanStore"
+import { PRIORITY_CONFIG, type Card } from "../types"
 
 interface Props {
   card: Card
@@ -24,7 +24,7 @@ export function KanbanCard({ card, isDragOverlay = false }: Props) {
     isDragging,
   } = useSortable({
     id: card.id,
-    data: { type: 'card', card },
+    data: { type: "card", card },
   })
 
   const style = {
@@ -40,8 +40,8 @@ export function KanbanCard({ card, isDragOverlay = false }: Props) {
       className={`
         group relative bg-gray-800 border border-gray-700 rounded-lg p-3
         cursor-default select-none
-        ${isDragOverlay ? 'shadow-2xl rotate-2 scale-105 border-indigo-500' : 'hover:border-gray-500'}
-        ${isDragging && !isDragOverlay ? 'ring-1 ring-indigo-500/50' : ''}
+        ${isDragOverlay ? "shadow-2xl rotate-2 scale-105 border-indigo-500" : "hover:border-gray-500"}
+        ${isDragging && !isDragOverlay ? "ring-1 ring-indigo-500/50" : ""}
         transition-colors duration-150
       `}
       onMouseEnter={() => setIsHovered(true)}
@@ -58,7 +58,9 @@ export function KanbanCard({ card, isDragOverlay = false }: Props) {
         </button>
 
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-gray-100 leading-snug">{card.title}</p>
+          <p className="text-sm font-medium text-gray-100 leading-snug">
+            {card.title}
+          </p>
 
           {card.description && (
             <p className="mt-1 text-xs text-gray-400 line-clamp-2 leading-relaxed">
@@ -67,7 +69,9 @@ export function KanbanCard({ card, isDragOverlay = false }: Props) {
           )}
 
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
-            <span className={`inline-flex items-center gap-1 text-xs font-medium ${priority.color}`}>
+            <span
+              className={`inline-flex items-center gap-1 text-xs font-medium ${priority.color}`}
+            >
               <span className={`w-1.5 h-1.5 rounded-full ${priority.dot}`} />
               {priority.label}
             </span>

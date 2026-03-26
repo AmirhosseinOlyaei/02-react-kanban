@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { useDroppable } from '@dnd-kit/core'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
-import { Trash2, AlertTriangle } from 'lucide-react'
-import { useKanbanStore } from '../store/kanbanStore'
-import { KanbanCard } from './KanbanCard'
-import { AddCardForm } from './AddCardForm'
-import type { Column } from '../types'
+import { useState } from "react"
+import { useDroppable } from "@dnd-kit/core"
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
+import { Trash2, AlertTriangle } from "lucide-react"
+import { useKanbanStore } from "../store/kanbanStore"
+import { KanbanCard } from "./KanbanCard"
+import { AddCardForm } from "./AddCardForm"
+import type { Column } from "../types"
 
 interface Props {
   column: Column
@@ -20,11 +20,11 @@ export function KanbanColumn({ column }: Props) {
 
   const { setNodeRef, isOver } = useDroppable({
     id: column.id,
-    data: { type: 'column', column },
+    data: { type: "column", column },
   })
 
   const isOverLimit = column.limit !== null && cards.length > column.limit
-  const isAtLimit   = column.limit !== null && cards.length === column.limit
+  const isAtLimit = column.limit !== null && cards.length === column.limit
 
   return (
     <div className="flex flex-col w-72 flex-shrink-0">
@@ -39,11 +39,16 @@ export function KanbanColumn({ column }: Props) {
           </h2>
           <span
             className={`text-xs font-mono px-1.5 py-0.5 rounded-md min-w-[1.5rem] text-center
-              ${isOverLimit  ? 'bg-rose-900/60 text-rose-300'
-              : isAtLimit    ? 'bg-amber-900/60 text-amber-300'
-              : 'bg-gray-700 text-gray-400'}`}
+              ${
+                isOverLimit
+                  ? "bg-rose-900/60 text-rose-300"
+                  : isAtLimit
+                    ? "bg-amber-900/60 text-amber-300"
+                    : "bg-gray-700 text-gray-400"
+              }`}
           >
-            {cards.length}{column.limit !== null ? `/${column.limit}` : ''}
+            {cards.length}
+            {column.limit !== null ? `/${column.limit}` : ""}
           </span>
           {isOverLimit && (
             <AlertTriangle size={13} className="text-rose-400 flex-shrink-0" />
@@ -80,9 +85,11 @@ export function KanbanColumn({ column }: Props) {
         ref={setNodeRef}
         className={`
           flex-1 flex flex-col gap-2 min-h-24 p-2 rounded-xl border transition-colors duration-150
-          ${isOver
-            ? 'bg-gray-800/80 border-indigo-500/60'
-            : 'bg-gray-900/40 border-gray-800'}
+          ${
+            isOver
+              ? "bg-gray-800/80 border-indigo-500/60"
+              : "bg-gray-900/40 border-gray-800"
+          }
         `}
       >
         <SortableContext
